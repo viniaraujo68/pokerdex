@@ -1,10 +1,13 @@
-<nav>
-    <ul>
-        <li>
-            <a routerLink="/poker-nights" routerLinkActive="active">Poker Nights</a>
-        </li>
-        <li>
-            <a routerLink="/players" routerLinkActive="active">Players</a>
-        </li>
-    </ul>
+<nav class="navbar">
+  <ul class="navbar-list">
+    <li class="navbar-item">
+      <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" class="navbar-link">Home</a>
+    </li>
+    <li class="navbar-item">
+      <a routerLink="/poker-nights" routerLinkActive="active" class="navbar-link">Poker Nights</a>
+    </li>
+    <li class="navbar-item">
+      <a routerLink="/players" routerLinkActive="active" class="navbar-link">Jogadores</a>
+    </li>
+  </ul>
 </nav>

@@ -1,28 +1,32 @@
-nav {
-    background-color: #333;
-    padding: 10px;
+.navbar {
+  background-color: #333;
+  padding: 10px 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
+.navbar-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: space-around;
 }
 
-li {
-    display: inline;
-    margin-right: 20px;
+.navbar-item {
+  margin: 0;
 }
 
-a {
-    color: white;
-    text-decoration: none;
+.navbar-link {
+  color: #fff;
+  text-decoration: none;
+  padding: 10px 15px;
+  display: block;
+  transition: background-color 0.3s, color 0.3s;
 }
 
-a.active {
-    font-weight: bold;
-}
-
-a:hover {
-    text-decoration: underline;
+.navbar-link:hover,
+.navbar-link.active {
+  background-color: #007bff;
+  color: #fff;
+  border-radius: 4px;
 }
