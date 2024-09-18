@@ -23,10 +23,7 @@ router.post('/', async (req, res) => {
 			const newPlayer = new Player({
 				name: player.name,
 				totalProfit: player.profit,
-				pokerNights: [{
-					pokerNightId: pokerNight._id,
-					profit: player.profit
-				}]
+				nightNumber: 1,
 			});
 			await newPlayer.save();
 
@@ -40,12 +37,9 @@ router.post('/', async (req, res) => {
 			foundPlayer.totalProfit += player.profit; // Add the profit from this poker night
 			await foundPlayer.save(); // Save the updated player
 
-			// Save the poker night ID and profit in the player's pokerNights array
-			foundPlayer.pokerNights.push({
-				pokerNightId: pokerNight._id,
-				profit: player.profit
-			});
-			await foundPlayer.save(); // Save the updated player with the new poker night entry
+			// Update player's poker night count
+			foundPlayer.pokerNights += 1
+			await foundPlayer.save();
 		}
 	  }
 

@@ -11,16 +11,10 @@ const playerSchema = new mongoose.Schema({
     type: Number,
     default: 0
   },
-  pokerNights: [{
-    pokerNightId: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'PokerNight'
-    },
-    profit: {
-      type: Number,
-      default: 0
-    }
-  }]
+  nightNumber: {
+    type: Number,
+    default: 0
+  },
 });
 
 const Player = mongoose.model('Player', playerSchema);
