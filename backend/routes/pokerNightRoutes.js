@@ -33,13 +33,11 @@ router.post('/', async (req, res) => {
 			// Add the player to the poker night
 			pokerNight.players.push({ playerName: foundPlayer.name, profit: player.profit });
 
-			// Update player's total profit
+			// Update player
 			foundPlayer.totalProfit += player.profit; // Add the profit from this poker night
+			foundPlayer.nightNumber += 1
+			
 			await foundPlayer.save(); // Save the updated player
-
-			// Update player's poker night count
-			foundPlayer.pokerNights += 1
-			await foundPlayer.save();
 		}
 	  }
 
