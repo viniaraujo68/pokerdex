@@ -1,7 +1,7 @@
 <div class="players-container">
   <div *ngFor="let player of players" class="player-card">
     <h3 class="player-name">{{ player.name }}</h3>
-    <p class="player-info">Lucro Total: {{ player.totalProfit }}</p>
+    <p class="player-info">Lucro Total: {{ player.totalProfit | commaDecimal }}</p>
     <p class="player-info">Presente em {{ player.nightNumber }} Pokerdex</p>
   </div>
 </div>
