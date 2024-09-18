@@ -1,6 +1,10 @@
+
 <div class="form-container">
-	<h2>Registrar novo Pokerdex</h2>
-  
+	<div *ngIf="successMessage" class="custom-alert alert-success mt-3">
+		<span>{{ successMessage }}</span>
+		<button type="button" class="close" (click)="closeAlert()">&times;</button>
+	</div>
+	<h2>Registrar Novo Pokerdex</h2>
 	<form (ngSubmit)="onSubmit(pokerNightForm)" #pokerNightForm="ngForm">
 	  <!-- Date -->
 	  <div class="form-group">

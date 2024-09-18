@@ -14,6 +14,7 @@ export class PokerNightFormComponent {
     totalPot: 0,
     players: [{ name: '', profit: 0 }]
   };
+  successMessage: string | null = null;
 
   constructor(private http: HttpClient) {}
 
@@ -27,6 +28,8 @@ export class PokerNightFormComponent {
 
   resetForm(form: NgForm): void {
     form.resetForm();
+    this.pokerNight = { date: '', place: '', totalPot: 0, players: [] };
+    this.successMessage = null;
   }
 
   onProfitInput(event: any, index: number): void {
@@ -35,6 +38,10 @@ export class PokerNightFormComponent {
     value = value.replace(',', '.');
 
     this.pokerNight.players[index].profit = parseFloat(value);
+  }
+
+  closeAlert(): void {
+    this.successMessage = null;
   }
 
   onSubmit(pokerNightForm: NgForm): void {
@@ -52,6 +59,7 @@ export class PokerNightFormComponent {
         (response) => {
           console.log('Poker night created successfully!', response);
           this.resetForm(pokerNightForm);
+          this.successMessage = 'Pokerdex registrado com sucesso!';
         },
         (error) => {
           console.error('Error creating poker night:', error);
