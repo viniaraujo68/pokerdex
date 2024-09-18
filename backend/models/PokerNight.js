@@ -15,9 +15,9 @@ const pokerNightSchema = new mongoose.Schema({
     required: true
   },
   players: [{
-    playerId: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'Player'
+    playerName: {
+      type: String,
+      required: true
     },
     profit: {
       type: Number,
