@@ -5,7 +5,6 @@ const Player = require('../models/Player');
 
 const router = express.Router();
 
-// backend/pokerNightRoutes.js (or wherever your route is defined)
 router.post('/', async (req, res) => {
 	const { date, place, totalPot, players } = req.body;
   
@@ -18,26 +17,35 @@ router.post('/', async (req, res) => {
 		totalPot,
 	  });
   
-	  // Iterate over players to find them by name and add them to the poker night
 	  for (const player of players) {
-		const foundPlayer = await Player.findOne({ name: player.name }); // Find player by name
-		if (foundPlayer) {
-		  // Add the player to the poker night
-		  pokerNight.players.push({ playerId: foundPlayer._id, profit: player.profit });
-  
-		  // Update player's total profit
-		  foundPlayer.totalProfit += player.profit; // Add the profit from this poker night
-		  await foundPlayer.save(); // Save the updated player
-  
-		  // Save the poker night ID and profit in the player's pokerNights array
-		  foundPlayer.pokerNights.push({
-			pokerNightId: pokerNight._id,
-			profit: player.profit
-		  });
-		  await foundPlayer.save(); // Save the updated player with the new poker night entry
+		const foundPlayer = await Player.findOne({ name: player.name });
+		if (!foundPlayer) {
+			const newPlayer = new Player({
+				name: player.name,
+				totalProfit: player.profit,
+				pokerNights: [{
+					pokerNightId: pokerNight._id,
+					profit: player.profit
+				}]
+			});
+			await newPlayer.save();
+
+			// Add the player to the poker night
+			pokerNight.players.push({ playerName: newPlayer.name, profit: player.profit });
 		} else {
-		  // Handle case where player is not found
-		  return res.status(404).send({ message: `Player ${player.name} not found` });
+			// Add the player to the poker night
+			pokerNight.players.push({ playerName: foundPlayer.name, profit: player.profit });
+
+			// Update player's total profit
+			foundPlayer.totalProfit += player.profit; // Add the profit from this poker night
+			await foundPlayer.save(); // Save the updated player
+
+			// Save the poker night ID and profit in the player's pokerNights array
+			foundPlayer.pokerNights.push({
+				pokerNightId: pokerNight._id,
+				profit: player.profit
+			});
+			await foundPlayer.save(); // Save the updated player with the new poker night entry
 		}
 	  }
 
