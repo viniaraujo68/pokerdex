@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-poker-night-form',
@@ -24,13 +25,8 @@ export class PokerNightFormComponent {
     this.pokerNight.players.splice(index, 1);
   }
 
-  resetForm(): void {
-    this.pokerNight = {
-      date: '',
-      place: '',
-      totalPot: 0,
-      players: []
-    };
+  resetForm(form: NgForm): void {
+    form.resetForm();
   }
 
   onProfitInput(event: any, index: number): void {
@@ -41,7 +37,7 @@ export class PokerNightFormComponent {
     this.pokerNight.players[index].profit = parseFloat(value);
   }
 
-  onSubmit(): void {
+  onSubmit(pokerNightForm: NgForm): void {
     // Prepare the data to be sent
     const pokerNightData = {
       date: this.pokerNight.date,
@@ -55,7 +51,7 @@ export class PokerNightFormComponent {
       .subscribe(
         (response) => {
           console.log('Poker night created successfully!', response);
-          //this.resetForm();
+          this.resetForm(pokerNightForm);
         },
         (error) => {
           console.error('Error creating poker night:', error);
