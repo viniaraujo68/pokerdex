@@ -3,13 +3,13 @@
 	<div class="cards">
 	  <div class="card" *ngFor="let pokerNight of pokerNights">
 		<div class="card-content">
-		  <h3>{{ pokerNight.date | date: 'shortDate' }}</h3>
-		  <p><strong>Place:</strong> {{ pokerNight.place }}</p>
-		  <p><strong>Total Pot:</strong> ${{ pokerNight.totalPot }}</p>
-		  <h4>Players:</h4>
+		  <h3>{{ pokerNight.date | date: 'dd/MM/yyyy' }}</h3>
+		  <p><strong>Local:</strong> {{ pokerNight.place }}</p>
+		  <p><strong>Pot Total:</strong> ${{ pokerNight.totalPot }}</p>
+		  <h4>Jogadores:</h4>
 		  <ul>
 			<li *ngFor="let player of pokerNight.players">
-			  Player ID: {{ player.name }} - Profit: ${{ player.profit }}
+			  {{ player.name }}: {{ player.profit }}
 			</li>
 		  </ul>
 	  </div>
