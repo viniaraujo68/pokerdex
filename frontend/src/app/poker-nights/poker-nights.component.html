@@ -1,1 +1,17 @@
-<p>poker-nights works!</p>
+<div class="poker-nights-container"></div>
+	<h2>Poker Nights</h2>
+	<div class="cards">
+	  <div class="card" *ngFor="let pokerNight of pokerNights">
+		<div class="card-content">
+		  <h3>{{ pokerNight.date | date: 'shortDate' }}</h3>
+		  <p><strong>Place:</strong> {{ pokerNight.place }}</p>
+		  <p><strong>Total Pot:</strong> ${{ pokerNight.totalPot }}</p>
+		  <h4>Players:</h4>
+		  <ul>
+			<li *ngFor="let player of pokerNight.players">
+			  Player ID: {{ player.name }} - Profit: ${{ player.profit }}
+			</li>
+		  </ul>
+	  </div>
+	</div>
+</div>

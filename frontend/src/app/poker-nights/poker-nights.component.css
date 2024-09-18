@@ -1,0 +1,31 @@
+.poker-nights-container {
+	padding: 20px;
+  }
+  
+  .cards {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 20px; /* Space between cards */
+  }
+  
+  .card {
+	background-color: #fff;
+	border: 1px solid #ccc;
+	border-radius: 8px;
+	padding: 15px;
+	width: 300px; /* Set a width for the cards */
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .card-content h3 {
+	margin: 0;
+  }
+  
+  .card-content ul {
+	list-style-type: none;
+	padding: 0;
+  }
+  
+  .card-content li {
+	margin: 5px 0;
+  }

@@ -1,5 +1,6 @@
 // backend/server.js
 const express = require('express');
+const cors = require('cors');
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 const playerRoutes = require('./routes/playerRoutes'); // Import player routes
@@ -11,6 +12,7 @@ const app = express();
 const port = process.env.PORT || 3000;
 
 // Middleware to parse JSON
+app.use(cors());
 app.use(express.json());
 
 // Connect to MongoDB
