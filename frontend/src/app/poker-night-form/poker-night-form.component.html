@@ -1,0 +1,85 @@
+<div class="form-container">
+	<h2>Add a New Poker Night</h2>
+  
+	<form (ngSubmit)="onSubmit()" #pokerNightForm="ngForm">
+	  <!-- Date -->
+	  <div class="form-group">
+		<label for="date">Data</label>
+		<input
+		  type="date"
+		  id="date"
+		  class="form-control"
+		  required
+		  [(ngModel)]="pokerNight.date"
+		  name="date"
+		  #date="ngModel"
+		/>
+		<div *ngIf="date.invalid && (date.dirty || date.touched)" class="alert alert-danger">
+		  Date is required.
+		</div>
+	  </div>
+  
+	  <!-- Place -->
+	  <div class="form-group">
+		<label for="place">Local</label>
+		<input
+		  type="text"
+		  id="place"
+		  class="form-control"
+		  required
+		  [(ngModel)]="pokerNight.place"
+		  name="place"
+		  #place="ngModel"
+		/>
+		<div *ngIf="place.invalid && (place.dirty || place.touched)" class="alert alert-danger">
+		  Place is required.
+		</div>
+	  </div>
+  
+	  <!-- Total Pot -->
+	  <div class="form-group">
+		<label for="totalPot">Pot total</label>
+		<input
+		  type="number"
+		  id="totalPot"
+		  class="form-control"
+		  required
+		  [(ngModel)]="pokerNight.totalPot"
+		  name="totalPot"
+		  #totalPot="ngModel"
+		/>
+		<div *ngIf="totalPot.invalid && (totalPot.dirty || totalPot.touched)" class="alert alert-danger">
+		  Total Pot is required.
+		</div>
+	  </div>
+  
+	  <!-- Players -->
+	  <div class="form-group">
+		<label>Jogadores e Lucros</label>
+		<div *ngFor="let player of pokerNight.players; let i = index" class="player-row">
+		  <input
+			type="text"
+			class="form-control"
+			placeholder="Nome"
+			required
+			[(ngModel)]="player.name"
+			name="playerName{{i}}"
+			#playerName="ngModel"
+		  />
+		  <input
+			type="number"
+			class="form-control"
+			placeholder="Lucro"
+			required
+			[(ngModel)]="player.profit"
+			name="playerProfit{{i}}"
+			#playerProfit="ngModel"
+		  />
+		  <button type="button" class="btn btn-danger" (click)="removePlayer(i)">Remover</button>
+		</div>
+		<button type="button" class="btn btn-secondary" (click)="addPlayer()">Adicionar Jogador</button>
+	  </div>
+  
+	  <button type="submit" class="btn btn-primary" [disabled]="pokerNightForm.invalid">Criar Poker Night</button>
+	</form>
+  </div>
