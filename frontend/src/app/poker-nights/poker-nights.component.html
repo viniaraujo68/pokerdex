@@ -5,11 +5,11 @@
 		<div class="card-content">
 		  <h3>{{ pokerNight.date | date: 'dd/MM/yyyy' }}</h3>
 		  <p><strong>Local:</strong> {{ pokerNight.place }}</p>
-		  <p><strong>Pot Total:</strong> ${{ pokerNight.totalPot }}</p>
+		  <p><strong>Pot Total:</strong> ${{ pokerNight.totalPot | commaDecimal}}</p>
 		  <h4>Jogadores:</h4>
 		  <ul>
 			<li *ngFor="let player of pokerNight.players">
-			  {{ player.name }}: {{ player.profit }}
+			  {{ player.playerName }}: {{ player.profit | commaDecimal}}
 			</li>
 		  </ul>
 	  </div>

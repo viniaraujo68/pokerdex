@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 interface Player {
-  name: string;
+  playerName: string;
   profit: number;
 }
 
