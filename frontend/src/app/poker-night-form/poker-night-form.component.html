@@ -1,5 +1,5 @@
 <div class="form-container">
-	<h2>Add a New Poker Night</h2>
+	<h2>Registrar novo Pokerdex</h2>
   
 	<form (ngSubmit)="onSubmit()" #pokerNightForm="ngForm">
 	  <!-- Date -->
@@ -80,6 +80,6 @@
 		<button type="button" class="btn btn-secondary" (click)="addPlayer()">Adicionar Jogador</button>
 	  </div>
   
-	  <button type="submit" class="btn btn-primary" [disabled]="pokerNightForm.invalid">Criar Poker Night</button>
+	  <button type="submit" class="btn btn-primary" [disabled]="pokerNightForm.invalid">Registrar Pokerdex</button>
 	</form>
   </div>
