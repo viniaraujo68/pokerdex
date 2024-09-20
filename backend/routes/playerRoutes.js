@@ -4,7 +4,6 @@ const Player = require('../models/Player');
 
 const router = express.Router();
 
-// Create a new player
 router.post('/', async (req, res) => {
   try {
     const player = new Player(req.body);
@@ -15,7 +14,6 @@ router.post('/', async (req, res) => {
   }
 });
 
-// Get all players
 router.get('/', async (req, res) => {
   try {
     const players = await Player.find();
@@ -25,7 +23,6 @@ router.get('/', async (req, res) => {
   }
 });
 
-// Get a specific player by ID
 router.get('/:id', async (req, res) => {
   try {
     const player = await Player.findById(req.params.id);
@@ -38,7 +35,6 @@ router.get('/:id', async (req, res) => {
   }
 });
 
-// Get a specific player by name
 router.get('/name/:name', async (req, res) => {
   try {
     const player = await Player.findOne({ name: req.params.name });

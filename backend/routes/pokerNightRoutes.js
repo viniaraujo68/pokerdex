@@ -9,7 +9,6 @@ router.post('/', async (req, res) => {
 	const { date, place, totalPot, players } = req.body;
   
 	try {
-	  // Create a new PokerNight instance
 	  const pokerNight = new PokerNight({
 		date,
 		place,
@@ -50,7 +49,6 @@ router.post('/', async (req, res) => {
 	}
 });
 
-  // Get all poker nights
 router.get('/', async (req, res) => {
 	try {
 	  const pokerNights = await PokerNight.find();
@@ -60,7 +58,6 @@ router.get('/', async (req, res) => {
 	}
   });
   
-// Get a specific poker night by ID
 router.get('/:id', async (req, res) => {
 	try {
 		const pokerNight = await PokerNight.findById(req.params.id).populate('players.playerId');

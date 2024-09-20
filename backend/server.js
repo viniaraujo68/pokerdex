@@ -26,8 +26,8 @@ mongoose.connect(process.env.MONGO_URI, {
 });
 
 // Use routes
-app.use('/api/players', playerRoutes); // Prefix player routes with /api/players
-app.use('/api/pokernights', pokerNightRoutes); // Prefix poker night routes with /api/pokernights
+app.use('/players', playerRoutes);
+app.use('/pokernights', pokerNightRoutes);
 
 // Start the server
 app.listen(port, () => {

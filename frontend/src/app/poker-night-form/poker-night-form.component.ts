@@ -54,7 +54,7 @@ export class PokerNightFormComponent {
     };
 
     // Make a POST request to the backend to save the poker night
-    this.http.post('http://localhost:3000/api/pokernights', pokerNightData)
+    this.http.post('http://localhost:3000/pokernights', pokerNightData)
       .subscribe(
         (response) => {
           console.log('Poker night created successfully!', response);

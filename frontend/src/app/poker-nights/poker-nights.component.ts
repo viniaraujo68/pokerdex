@@ -31,7 +31,7 @@ export class PokerNightsComponent implements OnInit {
 
   // Method to fetch poker nights from the backend
   fetchPokerNights(): void {
-    this.http.get<PokerNight[]>('http://localhost:3000/api/pokernights') // Adjust the URL to your backend endpoint
+    this.http.get<PokerNight[]>('http://localhost:3000/pokernights') // Adjust the URL to your backend endpoint
       .subscribe(
         (data) => {
           this.pokerNights = data; // Assign fetched data to pokerNights array
@@ -47,7 +47,7 @@ export class PokerNightsComponent implements OnInit {
       body: { id: id }
     };
   
-    this.http.delete('http://localhost:3000/api/pokernights/delete', options)
+    this.http.delete('http://localhost:3000/pokernights/delete', options)
       .subscribe(
         () => {
           for (const pokerNight of this.pokerNights) {

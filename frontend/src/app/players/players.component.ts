@@ -23,7 +23,7 @@ export class PlayersComponent implements OnInit {
 
   // Method to fetch players from the backend
   fetchPlayers(): void {
-    this.http.get<Player[]>('http://localhost:3000/api/players') // Adjust the URL to your backend endpoint
+    this.http.get<Player[]>('http://localhost:3000/players') // Adjust the URL to your backend endpoint
       .subscribe(
         (data) => {
           this.players = data.sort((a, b) => b.totalProfit - a.totalProfit);
