@@ -28,7 +28,7 @@ export class PokerNightFormComponent {
 
   resetForm(form: NgForm): void {
     form.resetForm();
-    this.pokerNight = { date: '', place: '', totalPot: 0, players: [] };
+    this.pokerNight = { date: '', place: '', totalPot: 0, players: [{name: '', profit: 0}]};
     this.successMessage = null;
   }
 
