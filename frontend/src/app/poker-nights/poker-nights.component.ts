@@ -32,7 +32,7 @@ export class PokerNightsComponent implements OnInit {
   }
 
   fetchPokerNights(): void {
-    this.http.get<PokerNight[]>('http://localhost:3000/pokernights') 
+    this.http.get<PokerNight[]>('https://pokerdex-backend.onrender.com/pokernights') 
       .subscribe(
         (data) => {
             this.pokerNights = data.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
@@ -53,7 +53,7 @@ export class PokerNightsComponent implements OnInit {
       'Authorization': `Bearer ${token}`
     });
   
-    this.http.delete('http://localhost:3000/pokernights/delete', { headers, body: pokerId })
+    this.http.delete('https://pokerdex-backend.onrender.com/pokernights/delete', { headers, body: pokerId })
       .subscribe(
         () => {
           for (const pokerNight of this.pokerNights) {

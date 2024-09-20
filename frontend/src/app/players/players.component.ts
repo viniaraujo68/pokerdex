@@ -22,7 +22,7 @@ export class PlayersComponent implements OnInit {
   }
 
   fetchPlayers(): void {
-    this.http.get<Player[]>('http://localhost:3000/players')
+    this.http.get<Player[]>('https://pokerdex-backend.onrender.com/players')
       .subscribe(
         (data) => {
           this.players = data.sort((a, b) => b.totalProfit - a.totalProfit);

@@ -11,7 +11,7 @@ interface User {
   providedIn: 'root',
 })
 export class AuthService {
-  private apiUrl = 'http://localhost:3000/auth';
+  private apiUrl = 'https://pokerdex-backend.onrender.com/auth';
 
   constructor(private http: HttpClient) {}
 

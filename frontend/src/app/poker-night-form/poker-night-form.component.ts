@@ -57,7 +57,7 @@ export class PokerNightFormComponent {
       'Authorization': `Bearer ${token}`
     });
 
-    this.http.post('http://localhost:3000/pokernights', pokerNightData, { headers })
+    this.http.post('https://pokerdex-backend.onrender.com/pokernights', pokerNightData, { headers })
       .subscribe(
         (response) => {
           console.log('Poker night created successfully!', response);
