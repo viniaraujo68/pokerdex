@@ -21,7 +21,7 @@ interface PokerNight {
   styleUrls: ['./poker-nights.component.css']
 })
 export class PokerNightsComponent implements OnInit {
-  pokerNights: PokerNight[] = []; // Array to store poker night data
+  pokerNights: PokerNight[] = [];
 
   constructor(private http: HttpClient, private cdr: ChangeDetectorRef) { }
 
@@ -29,15 +29,14 @@ export class PokerNightsComponent implements OnInit {
     this.fetchPokerNights();
   }
 
-  // Method to fetch poker nights from the backend
   fetchPokerNights(): void {
-    this.http.get<PokerNight[]>('http://localhost:3000/pokernights') // Adjust the URL to your backend endpoint
+    this.http.get<PokerNight[]>('http://localhost:3000/pokernights') 
       .subscribe(
         (data) => {
-          this.pokerNights = data; // Assign fetched data to pokerNights array
+            this.pokerNights = data.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
         },
         (error) => {
-          console.error('Error fetching poker nights', error); // Log any errors
+          console.error('Error fetching poker nights', error);
         }
       );
   }
@@ -58,7 +57,7 @@ export class PokerNightsComponent implements OnInit {
           }
         },
         (error) => {
-          console.error('Error deleting poker night', error); // Log any errors
+          console.error('Error deleting poker night', error);
         }
       );
   }

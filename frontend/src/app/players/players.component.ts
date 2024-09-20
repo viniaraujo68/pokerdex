@@ -13,23 +13,22 @@ interface Player {
   styleUrls: ['./players.component.css']
 })
 export class PlayersComponent implements OnInit {
-  players: Player[] = []; // Array to store player data
+  players: Player[] = [];
 
   constructor(private http: HttpClient) { }
 
   ngOnInit(): void {
-    this.fetchPlayers(); // Fetch players when the component initializes
+    this.fetchPlayers();
   }
 
-  // Method to fetch players from the backend
   fetchPlayers(): void {
-    this.http.get<Player[]>('http://localhost:3000/players') // Adjust the URL to your backend endpoint
+    this.http.get<Player[]>('http://localhost:3000/players')
       .subscribe(
         (data) => {
           this.players = data.sort((a, b) => b.totalProfit - a.totalProfit);
         },
         (error) => {
-          console.error('Error fetching players', error); // Log any errors
+          console.error('Error fetching players', error);
         }
       );
   }

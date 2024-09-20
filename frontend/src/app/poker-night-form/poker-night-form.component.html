@@ -81,10 +81,11 @@
 		  />
 		  <button type="button" class="btn btn-danger" (click)="removePlayer(i)">Remover</button>
 		</div>
-		<button type="button" class="btn btn-secondary" (click)="addPlayer()">Adicionar Jogador</button>
+		<div class="button-container">
+			<button type="button" class="btn btn-secondary" (click)="addPlayer()">Adicionar Jogador</button>
+			<button type="submit" class="btn btn-primary" [disabled]="pokerNightForm.invalid">Registrar Pokerdex</button>
+		</div>
 	  </div>
-  
-	  <button type="submit" class="btn btn-primary" [disabled]="pokerNightForm.invalid">Registrar Pokerdex</button>
 	</form>
   </div>
 </div>
