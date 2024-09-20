@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { ChangeDetectorRef } from '@angular/core';
 
 interface Player {
   playerName: string;
@@ -7,6 +8,7 @@ interface Player {
 }
 
 interface PokerNight {
+  id: string;
   date: string;
   place: string;
   totalPot: number;
@@ -21,10 +23,10 @@ interface PokerNight {
 export class PokerNightsComponent implements OnInit {
   pokerNights: PokerNight[] = []; // Array to store poker night data
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private cdr: ChangeDetectorRef) { }
 
   ngOnInit(): void {
-    this.fetchPokerNights(); // Fetch poker nights when the component initializes
+    this.fetchPokerNights();
   }
 
   // Method to fetch poker nights from the backend
@@ -39,4 +41,27 @@ export class PokerNightsComponent implements OnInit {
         }
       );
   }
+
+  deletePokerNight(id: string): void {
+    const options = {
+      body: { id: id }
+    };
+  
+    this.http.delete('http://localhost:3000/api/pokernights/delete', options)
+      .subscribe(
+        () => {
+          for (const pokerNight of this.pokerNights) {
+            if (pokerNight.id == id) {
+              this.pokerNights.splice(this.pokerNights.indexOf(pokerNight), 1);
+              break;
+            }
+          }
+        },
+        (error) => {
+          console.error('Error deleting poker night', error); // Log any errors
+        }
+      );
+  }
+
+  
 }
