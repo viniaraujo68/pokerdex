@@ -4,9 +4,13 @@ import { RouterModule, Routes } from '@angular/router';
 import { PokerNightsComponent } from './poker-nights/poker-nights.component';
 import { PlayersComponent } from './players/players.component';
 import { PokerNightFormComponent } from './poker-night-form/poker-night-form.component';
+import { LoginComponent } from './login/login.component';
+
 
 const routes: Routes = [
-  { path: '', component: PokerNightFormComponent },
+  { path: 'login', component: LoginComponent },
+  { path: '', redirectTo: '/login', pathMatch: 'full' },
+  { path: 'home', component: PokerNightFormComponent },
   { path: 'poker-nights', component: PokerNightsComponent },
   { path: 'players', component: PlayersComponent },
 ];

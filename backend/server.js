@@ -3,8 +3,9 @@ const express = require('express');
 const cors = require('cors');
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
-const playerRoutes = require('./routes/playerRoutes'); // Import player routes
-const pokerNightRoutes = require('./routes/pokerNightRoutes'); // Import poker night routes
+const playerRoutes = require('./routes/playerRoutes');
+const pokerNightRoutes = require('./routes/pokerNightRoutes'); 
+const authRoutes = require('./routes/auth');
 
 dotenv.config();
 
@@ -28,6 +29,8 @@ mongoose.connect(process.env.MONGO_URI, {
 // Use routes
 app.use('/players', playerRoutes);
 app.use('/pokernights', pokerNightRoutes);
+app.use('/auth', authRoutes);
+
 
 // Start the server
 app.listen(port, () => {

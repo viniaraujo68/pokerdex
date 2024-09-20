@@ -9,6 +9,7 @@ import { PlayersComponent } from './players/players.component';
 import { PokerNightFormComponent } from './poker-night-form/poker-night-form.component';
 import { FormsModule } from '@angular/forms';
 import { CommaDecimalPipe } from './pipes/comma-decimal.pipe';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { CommaDecimalPipe } from './pipes/comma-decimal.pipe';
     PlayersComponent,
     PokerNightFormComponent,
     CommaDecimalPipe,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
