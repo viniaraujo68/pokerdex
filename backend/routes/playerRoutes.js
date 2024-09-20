@@ -51,4 +51,15 @@ router.get('/name/:name', async (req, res) => {
   }
 });
 
+router.delete('/delete', async (req, res) => {
+  try {
+    const player = await Player.findOneAndDelete({ name: req.body.name });
+    if (!player) {
+      return res.status(404).send({ message: 'Player not found' });
+    }
+  } catch (error) {
+    res.status(500).send(error);
+  }
+});
+
 module.exports = router;
