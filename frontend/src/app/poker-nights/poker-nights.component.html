@@ -10,7 +10,10 @@
 			<li *ngFor="let player of pokerNight.players">
 			  {{ player.playerName }}: {{ player.profit | commaDecimal}}
 			</li>
-		  </ul>
+		</ul>
+		<button type="button" class="btn-trash" (click)="deletePokerNight(pokerNight.id)">
+			<i class="fas fa-trash"></i> Excluir
+		</button>
 	  </div>
 	</div>
 </div>
