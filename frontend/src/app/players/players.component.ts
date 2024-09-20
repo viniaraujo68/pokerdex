@@ -26,7 +26,7 @@ export class PlayersComponent implements OnInit {
     this.http.get<Player[]>('http://localhost:3000/api/players') // Adjust the URL to your backend endpoint
       .subscribe(
         (data) => {
-          this.players = data; // Assign fetched data to players array
+          this.players = data.sort((a, b) => b.totalProfit - a.totalProfit);
         },
         (error) => {
           console.error('Error fetching players', error); // Log any errors
