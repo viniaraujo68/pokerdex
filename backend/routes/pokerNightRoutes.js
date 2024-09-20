@@ -71,6 +71,29 @@ router.get('/:id', async (req, res) => {
 	} catch (error) {
 		res.status(500).send(error);
 	}
-});  
+});
+
+router.delete('/delete', async (req, res) => {
+	try {
+	  const { id } = req.body;
+	  const pokerNight = await PokerNight.findOneAndDelete(id);
+	  for (const player of pokerNight.players) {
+		const foundPlayer = await Player.findOne({ name: player.playerName });
+		if (foundPlayer) {
+		  foundPlayer.totalProfit -= player.profit;
+		  foundPlayer.nightNumber -= 1;
+		  if (foundPlayer.nightNumber === 0) {
+			await Player.deleteOne({ name: player.playerName });
+		  } else {
+		  	await foundPlayer.save();
+		  }
+		}
+	  }
+  
+	  res.status(200).send({ message: 'Poker night deleted successfully' });
+	} catch (error) {
+	  res.status(500).send({ message: 'Error deleting poker night', error });
+	}
+});
 
 module.exports = router;
