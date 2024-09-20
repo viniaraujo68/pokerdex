@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { NgForm } from '@angular/forms';
 
 @Component({
@@ -14,7 +14,8 @@ export class PokerNightFormComponent {
     totalPot: 0,
     players: [{ name: '', profit: 0 }]
   };
-  successMessage: string | null = null;
+  successMessage: string = '';
+  errorMessage: string = '';
 
   constructor(private http: HttpClient) {}
 
@@ -29,7 +30,8 @@ export class PokerNightFormComponent {
   resetForm(form: NgForm): void {
     form.resetForm();
     this.pokerNight = { date: '', place: '', totalPot: 0, players: [{name: '', profit: 0}]};
-    this.successMessage = null;
+    this.successMessage = '';
+    this.errorMessage = '';
   }
 
   onProfitInput(event: any, index: number): void {
@@ -38,10 +40,6 @@ export class PokerNightFormComponent {
     value = value.replace(',', '.');
 
     this.pokerNight.players[index].profit = parseFloat(value);
-  }
-
-  closeAlert(): void {
-    this.successMessage = null;
   }
 
   onSubmit(pokerNightForm: NgForm): void {
@@ -53,14 +51,23 @@ export class PokerNightFormComponent {
       players: this.pokerNight.players
     };
 
-    this.http.post('http://localhost:3000/pokernights', pokerNightData)
+    const token = localStorage.getItem('token');
+
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+
+    this.http.post('http://localhost:3000/pokernights', pokerNightData, { headers })
       .subscribe(
         (response) => {
           console.log('Poker night created successfully!', response);
           this.resetForm(pokerNightForm);
           this.successMessage = 'Pokerdex registrado com sucesso!';
+          this.errorMessage = '';
         },
         (error) => {
+          this.successMessage = '';
+          this.errorMessage = 'Erro ao criar o pokerdex. Tente novamente.';
           console.error('Error creating poker night:', error);
         }
       );

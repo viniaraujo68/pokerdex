@@ -1,5 +1,7 @@
 <div class="login-container">
   <div class="login-form">
+    <app-alert [message]="successMessage" type="success"></app-alert>
+    <app-alert [message]="errorMessage" type="error"></app-alert>
     <h2>Login</h2>
     <form (ngSubmit)="onSubmit(loginForm)" #loginForm="ngForm">
       <div class="form-group">

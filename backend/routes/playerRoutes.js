@@ -1,11 +1,16 @@
-// backend/playerRoutes.js
 const express = require('express');
 const Player = require('../models/Player');
+const auth = require('../middleware/auth');
 
 const router = express.Router();
 
-router.post('/', async (req, res) => {
+router.post('/', auth, async (req, res) => {
   try {
+
+    if (!req.user.admin) {
+      return res.status(403).send({ error: 'Admin privileges required' });
+    }
+
     const player = new Player(req.body);
     await player.save();
     res.status(201).send(player);
@@ -47,8 +52,11 @@ router.get('/name/:name', async (req, res) => {
   }
 });
 
-router.delete('/delete', async (req, res) => {
+router.delete('/delete', auth, async (req, res) => {
   try {
+    if (!req.user.admin) {
+      return res.status(403).send({ error: 'Admin privileges required' });
+    }
     const player = await Player.findOneAndDelete({ name: req.body.name });
     if (!player) {
       return res.status(404).send({ message: 'Player not found' });

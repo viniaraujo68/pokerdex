@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ChangeDetectorRef } from '@angular/core';
 
 interface Player {
@@ -22,6 +22,8 @@ interface PokerNight {
 })
 export class PokerNightsComponent implements OnInit {
   pokerNights: PokerNight[] = [];
+  successMessage: string = '';
+  errorMessage: string = '';
 
   constructor(private http: HttpClient, private cdr: ChangeDetectorRef) { }
 
@@ -42,11 +44,16 @@ export class PokerNightsComponent implements OnInit {
   }
 
   deletePokerNight(id: string): void {
-    const options = {
+    const pokerId = {
       body: { id: id }
     };
+    const token = localStorage.getItem('token');
+
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
   
-    this.http.delete('http://localhost:3000/pokernights/delete', options)
+    this.http.delete('http://localhost:3000/pokernights/delete', { headers, body: pokerId })
       .subscribe(
         () => {
           for (const pokerNight of this.pokerNights) {
@@ -55,12 +62,14 @@ export class PokerNightsComponent implements OnInit {
               break;
             }
           }
+          this.successMessage = 'Pokerdex deletada com sucesso';
+          this.errorMessage = '';
         },
         (error) => {
           console.error('Error deleting poker night', error);
+          this.errorMessage = 'Erro ao deletar pokerdex';
+          this.successMessage = '';
         }
       );
   }
-
-  
 }

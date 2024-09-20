@@ -15,7 +15,8 @@ interface User {
 })
 export class LoginComponent {
   user: User = { username: '', password: '' };
-  message: string | null = null;
+  successMessage: string = '';
+  errorMessage: string = '';
 
   constructor(private authService: AuthService, private router: Router) {}
 
@@ -29,11 +30,13 @@ export class LoginComponent {
         },
         (error) => {
           console.error('Error logging in:', error);
-          this.message = 'Invalid username or password';
+          this.successMessage = '';
+          this.errorMessage = 'Nome de usuário ou senha inválidos';
         }
       );
     } else {
-      this.message = 'Please fill in all required fields';
+      this.successMessage = '';
+      this.errorMessage = 'Preencha os campos corretamente';
     }
   }
 }

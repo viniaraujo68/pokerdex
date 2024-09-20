@@ -10,6 +10,7 @@ import { PokerNightFormComponent } from './poker-night-form/poker-night-form.com
 import { FormsModule } from '@angular/forms';
 import { CommaDecimalPipe } from './pipes/comma-decimal.pipe';
 import { LoginComponent } from './login/login.component';
+import { AlertComponent } from './alert/alert.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { LoginComponent } from './login/login.component';
     PokerNightFormComponent,
     CommaDecimalPipe,
     LoginComponent,
+    AlertComponent,
   ],
   imports: [
     BrowserModule,
