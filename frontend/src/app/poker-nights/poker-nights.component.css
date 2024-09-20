@@ -1,6 +1,8 @@
 .poker-nights-container {
-  padding: 80px;
-  text-align: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
 }
 
 .cards {
@@ -8,7 +10,6 @@
   flex-wrap: wrap;
   gap: 20px;
   justify-content: center;
-  margin-top: 20px;
 }
 
 .card {
