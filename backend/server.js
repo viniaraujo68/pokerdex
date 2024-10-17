@@ -30,7 +30,7 @@ app.use('/pokernights', pokerNightRoutes);
 app.use('/auth', authRoutes);
 
 
-// Start the server
-app.listen(port, () => {
+const host = '0.0.0.0';
+app.listen(port, host, () => {
   console.log(`Server is running on http://localhost:${port}`);
 });
